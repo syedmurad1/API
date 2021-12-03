@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Fun API for you</title>
+		<link rel="stylesheet" href="funapp.css">
+	</head>
+	<body onload="dateFunction()">			<!-- runs dateFunction which obtains date and time info-->
+		
+			<div class="topBanner">
+				<h1>Fun API for you</h1>
+			</div>
+			<div class="container">
+			<table class="t1b">						<!-- table which operates as settings -->
+				<caption><h2><u style="color:RGB(2160,230,230);">Settings</u></h2></caption>
+				<tr>
+					<td> 											<!--Add buttons to initiate auth sequence and sign out (from google developers-->
+					<p>Google Calendar Status</p>
+					<button id="authorize_button" style="display: none;">Not Authorized. Authorize Google Calendar</button>
+					<button id="signout_button" style="display: none;">Signed In. Click to Sign Out.</button>
+					
+
+					<script async defer src="https://apis.google.com/js/api.js"
+					onload="this.onload=function(){};handleClientLoad()"
+					onreadystatechange="if (this.readyState === 'complete') this.onload()">
+					</script>																<!-- end of google developers-->
+					</td>
+				</tr>
+				<tr>
+					<td><form><label>Enter your Name</label><br><input type="text" name="message" id = "user_input"></form>
+					<input type="submit" onclick="showInput();showLocation();"></td>
+				</tr>
+				<tr>
+					<td id="locationDisplay" style="display:none">
+																			
+						<form><label>Manually Enter UK Town</label><br><input type="text" name="town" id = "userTown"></form>
+						<input type="submit" onclick="weatherData2(); hideSelect();">
+							
+						<p>or</p>
+						<p>Automatically</p>
+						<button onclick="getLocation(); hideButton(); showPosition(position);">Find my Location</button> 	<!-- on click the button runs getLocation which obtains location data, hideButton displays the hidden continue button -->
+						<p id="geo"></p>
+							
+						<button id="buttonDisplay" style="display:none" onclick="weatherData(); hideSelect();"> Continue </button> <!-- continue button, will run weatherData and display the background options -->
+						<script src="funapp.js"> </script>										<!-- defines location of js file -->
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p id="selectDisplay" style="float:left;display:none"> Select Background:	<!-- background drop down selection -->
+							<select onchange="changeColor(bGc,value);hideIconS();">					<!-- bGc is background colour for following table, hideIconS displays image selector -->
+								<option style="background-color: rgb(250,250,250)" value="">Please choose...</option>
+								<option style="background-color: rgb(213,240,5)" value="RGB(213,240,5)">Yellow</option>
+								<option style="background-color: rgb(240,32,5)"value="RGB(240,32,5)">Red</option>
+								<option style="background-color: rgb(5,94,240)"value="RGB(5,94,240)">Blue</option>
+								<option style="background-color: rgb(95,240,5)"value="RGB(95,240,5)">Green</option>
+							</select>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p id="iconSDisplay" style="display:none;">Select Image:								<!-- select image -->
+							<img id="imageToSwap" src="images/frog.png" width="1" height="1">
+				
+								<select  id="imageList" onChange="swapImage(); hideTable();">						<!-- hidetable displays table that is the main app -->
+									<option value="">Please choose...</option>
+									<option value="images/frog.png">Frog</option>
+									<option value="images/dino.png">Dinosaur</option>
+									<option value="images/alien.png">Alien</option>
+									<option value="images/unicorn.png">Unicorn</option>
+								</select>
+						</p>
+					</td>
+				</tr>
+			</table>
+			<div id="tableDisplay" style="display:none;"> 
+				<table id="bGc">						<!-- bCg implements background colour from above, style centres the table -->
+					<caption><h2><u style="color:RGB(2160,230,230);">My Day</u></h2></caption>
+					<tr>
+						<td><h1 id="dayNameNow"></h1><h1 id="theDate"></h1></td>					<!-- displays day name and date -->
+						<td colspan="2"><h1 id="image" width="32" Height="32" style="float:left"></h1><h2 style="float:right; text-align:center;"><span id='display'></span>, here's what's going on today.</h2></td> <!-- image displays selected image -->
+						<td><h1 id="theTime"></h1><h1 id="name"</h1></td>
+					</tr>
+					<tr>
+						<td class="top"><h2 style="text-align:left"><i>Today's Events:</i></h2><pre id="content" style="text-align:left; font-family: Papyrus; font-size:20px"></pre></td>
+						<td><h1><u>Weather</u></h1><h1 id="weather"></h1><h1><span  id="temp"></span><sup> o</sup>c</h1><p id="icon"></p></td>						
+																									<!-- displays icon of current weather conditions -->
+						<td class="top"><h2 style="text-align:left"><i>Tomorrow's Events:</i></h2><pre id="content2" style="text-align:left; font-family: Papyrus; font-size:20px"></pre></td>																			
+						<td class="top"><h2>Latest tweet..</h2>
+						<a class="twitter-timeline" href="https://twitter.com/SomersetCouncil?ref_src=twsrc%5Etfw" data-width="200" Data-height="250"></a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+						</td>	
+					</tr>
+					
+
+				</table>
+			</div>  
+		</div>
+			<footer>
+			<h2> This application for the Yeovil collage student's reference only </h2>
+			</footer>
+					
+	</body>
+</html>
