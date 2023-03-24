@@ -2,7 +2,6 @@ var request = new XMLHttpRequest();
 
 request.open('GET',"URL with KEY");
 
-
 request.onload = function() {
 	var obj =JSON.parse(this.response);
 	console.log(obj);
